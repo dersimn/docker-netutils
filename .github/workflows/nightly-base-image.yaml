@@ -3,7 +3,7 @@ name: Nightly base image update check
 on:
   workflow_dispatch:
   schedule:
-    - cron: "04 13 37 * *"
+    - cron: "13 4 * * *"
 
 jobs:
   check-ubuntu:
