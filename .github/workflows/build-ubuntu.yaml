@@ -1,4 +1,4 @@
-name: 'Build and publish docker images (all platforms)'
+name: Build Ubuntu
 
 on:
   workflow_dispatch:
@@ -7,7 +7,7 @@ on:
     branches: [ "master" ]
 
 jobs:
-  release:
+  build-push:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
