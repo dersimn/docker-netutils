@@ -1,27 +1,37 @@
 FROM ubuntu
 
 RUN apt-get update && \
-	apt-get -y install \
-        bmon \
+    apt-get -y install \
+        # CLI Tools
+        vim \
+        nano \
+        # HTTP
         curl \
+        wget \
+        # Web Browser
+        lynx \
+        w3m \
+        links2 \
+        # Clients
+        openssh-client \
+        mysql-client \
+        # Network and System Tools
+        bmon \
         dnsutils \
         iftop \
         iperf \
         iputils-ping \
-        lynx \
         mtr-tiny \
         net-tools \
         netcat \
+        ncat \
         nmap \
-        openssh-client \
         strace \
         sysstat \
         tcpdump \
         tcptraceroute \
         traceroute \
         telnet \
-        vim \
-        wget \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 CMD ["/bin/bash"]

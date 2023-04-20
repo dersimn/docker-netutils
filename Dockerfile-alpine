@@ -1,0 +1,37 @@
+FROM alpine
+
+# Already included in BusyBox
+#   wget
+#   telnet (part of busybox-extras)
+#   ip
+#   ifconfig
+#   ping
+#   traceroute
+#   nslookup
+
+RUN apk add --no-cache \
+        busybox-extras \
+        # CLI Tools
+        bash \
+        vim \
+        nano \
+        # HTTP
+        curl \
+        # Web Browser
+        lynx \
+        w3m \
+        links \
+        # Clients
+        openssh-client \
+        mysql-client \
+        # Network and System Tools
+        bmon \
+        iftop \
+        iperf \
+        mtr \
+        nmap \
+        strace \
+        sysstat \
+        tcpdump
+
+CMD ["/bin/bash"]
