@@ -3,8 +3,8 @@ name: Build Alpine
 on:
   workflow_dispatch:
   workflow_call:
-  push:
-    branches: [ "master" ]
+  # push:
+  #   branches: [ "master" ]
 
 jobs:
   build-push:
