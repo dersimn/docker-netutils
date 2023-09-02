@@ -27,3 +27,4 @@ jobs:
   trigger-build-ubuntu:
     needs: check-ubuntu
     uses: ./.github/workflows/build-ubuntu.yaml
+    secrets: inherit
