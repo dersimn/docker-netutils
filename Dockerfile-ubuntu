@@ -20,6 +20,7 @@ RUN apt-get update && \
         dnsutils \
         iftop \
         iperf \
+        iproute2 \
         iputils-ping \
         mtr-tiny \
         net-tools \
