@@ -24,6 +24,7 @@ RUN apk add --no-cache \
         # Clients
         openssh-client \
         mysql-client \
+        postgresql-client \
         # Network and System Tools
         bmon \
         iftop \

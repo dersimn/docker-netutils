@@ -15,6 +15,7 @@ RUN apt-get update && \
         # Clients
         openssh-client \
         mysql-client \
+        postgresql-client \
         # Network and System Tools
         bmon \
         dnsutils \
