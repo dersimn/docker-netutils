@@ -5,6 +5,7 @@ RUN apt-get update && \
         # CLI Tools
         vim \
         nano \
+        git \
         # HTTP
         curl \
         wget \

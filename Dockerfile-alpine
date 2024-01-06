@@ -15,6 +15,7 @@ RUN apk add --no-cache \
         bash \
         vim \
         nano \
+        git \
         # HTTP
         curl \
         # Web Browser
