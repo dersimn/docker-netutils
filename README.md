@@ -11,6 +11,18 @@ Command:
 
 # Build
 
+## build
+
+Without buildx, the variable `TARGETARCH` must be (manually) specified:
+
+    docker build \
+        -t netutils \
+        -f Dockerfile-ubuntu \
+        --build-arg TARGETARCH=amd64 \
+        .
+
+## buildx
+
     docker buildx create --name mybuilder
     docker buildx use mybuilder
 
