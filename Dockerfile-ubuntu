@@ -1,5 +1,7 @@
 FROM ubuntu:22.04
 
+ARG TARGETARCH TARGETVARIANT
+
 RUN apt-get update && \
     apt-get -y install \
         # CLI Tools
@@ -43,19 +45,19 @@ RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | b
 
 # kubectl
 RUN curl -L \
-        https://dl.k8s.io/release/$(curl -LS https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl \
+        https://dl.k8s.io/release/$(curl -LS https://dl.k8s.io/release/stable.txt)/bin/linux/${TARGETARCH}/kubectl \
         -o /usr/local/bin/kubectl \
     && chmod +x /usr/local/bin/kubectl
 
 # k9s
 RUN curl -L \
-        https://github.com/derailed/k9s/releases/download/$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r .name)/k9s_Linux_arm64.tar.gz \
+        https://github.com/derailed/k9s/releases/download/$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r .name)/k9s_Linux_${TARGETARCH}${TARGETVARIANT}.tar.gz \
     | tar xz -C /usr/local/bin \
     && chmod +x /usr/local/bin/k9s
 
 # yq
 RUN curl -L \
-        https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
+        https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${TARGETARCH} \
         -o /usr/local/bin/yq \
     && chmod +x /usr/local/bin/yq
 
