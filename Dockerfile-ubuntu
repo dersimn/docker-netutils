@@ -6,6 +6,7 @@ RUN apt-get update && \
         vim \
         nano \
         git \
+        jq \
         # HTTP
         curl \
         wget \
@@ -36,5 +37,26 @@ RUN apt-get update && \
         traceroute \
         telnet \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# HELM
+RUN curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+
+# kubectl
+RUN curl -L \
+        https://dl.k8s.io/release/$(curl -LS https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl \
+        -o /usr/local/bin/kubectl \
+    && chmod +x /usr/local/bin/kubectl
+
+# k9s
+RUN curl -L \
+        https://github.com/derailed/k9s/releases/download/$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r .name)/k9s_Linux_arm64.tar.gz \
+    | tar xz -C /usr/local/bin \
+    && chmod +x /usr/local/bin/k9s
+
+# yq
+RUN curl -L \
+        https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64 \
+        -o /usr/local/bin/yq \
+    && chmod +x /usr/local/bin/yq
 
 CMD ["/bin/bash"]

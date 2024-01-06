@@ -16,6 +16,11 @@ RUN apk add --no-cache \
         vim \
         nano \
         git \
+        jq \
+        yq \
+        kubectl \
+        helm \
+        k9s \
         # HTTP
         curl \
         # Web Browser
