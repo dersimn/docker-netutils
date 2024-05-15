@@ -2,6 +2,9 @@ FROM ubuntu:22.04
 
 ARG TARGETARCH TARGETVARIANT
 
+ENV TZ=Europe/Berlin \
+    DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && \
     apt-get -y install \
         # CLI Tools
@@ -20,6 +23,7 @@ RUN apt-get update && \
         openssh-client \
         mysql-client \
         postgresql-client \
+        s3cmd \
         # Network and System Tools
         bmon \
         dnsutils \

@@ -31,6 +31,7 @@ RUN apk add --no-cache \
         openssh-client \
         mysql-client \
         postgresql-client \
+        s3cmd \
         # Network and System Tools
         bmon \
         iftop \
