@@ -1,6 +1,4 @@
-FROM ubuntu:22.04
-
-ARG TARGETARCH TARGETVARIANT
+FROM ubuntu:24.04
 
 ENV TZ=Europe/Berlin \
     DEBIAN_FRONTEND=noninteractive
@@ -12,6 +10,7 @@ RUN apt-get update && \
         nano \
         git \
         jq \
+        yq \
         # HTTP
         curl \
         wget \
@@ -33,7 +32,7 @@ RUN apt-get update && \
         iputils-ping \
         mtr-tiny \
         net-tools \
-        netcat \
+        netcat-openbsd \
         ncat \
         nmap \
         strace \
@@ -41,24 +40,6 @@ RUN apt-get update && \
         tcpdump \
         tcptraceroute \
         traceroute \
-        telnet \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    # HELM
-    && curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash \
-    # kubectl
-    && curl -L \
-        https://dl.k8s.io/release/$(curl -LS https://dl.k8s.io/release/stable.txt)/bin/linux/${TARGETARCH}/kubectl \
-        -o /usr/local/bin/kubectl \
-    && chmod +x /usr/local/bin/kubectl \
-    # k9s
-    && curl -L \
-        https://github.com/derailed/k9s/releases/download/$(curl -s https://api.github.com/repos/derailed/k9s/releases/latest | jq -r .name)/k9s_Linux_${TARGETARCH}${TARGETVARIANT}.tar.gz \
-    | tar xz -C /usr/local/bin \
-    && chmod +x /usr/local/bin/k9s \
-    # yq
-    && curl -L \
-        https://github.com/mikefarah/yq/releases/latest/download/yq_linux_${TARGETARCH} \
-        -o /usr/local/bin/yq \
-    && chmod +x /usr/local/bin/yq
+        telnet
 
 CMD ["/bin/bash"]
