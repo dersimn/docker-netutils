@@ -1,5 +1,7 @@
 FROM alpine:3
 
+ARG TARGETPLATFORM
+
 # Already included in BusyBox
 #   wget
 #   telnet (part of busybox-extras)
@@ -9,37 +11,84 @@ FROM alpine:3
 #   traceroute
 #   nslookup
 
-RUN apk add --no-cache \
-        busybox-extras \
-        # CLI Tools
-        bash \
-        vim \
-        nano \
-        git \
-        jq \
-        yq \
-        kubectl \
-        helm \
-        k9s \
-        # HTTP
-        curl \
-        # Web Browser
-        lynx \
-        w3m \
-        links \
-        # Clients
-        openssh-client \
-        mysql-client \
-        postgresql-client \
-        s3cmd \
-        # Network and System Tools
-        bmon \
-        iftop \
-        iperf \
-        mtr \
-        nmap \
-        strace \
-        sysstat \
-        tcpdump
+RUN case "${TARGETPLATFORM}" in \
+        linux/386       | \
+        linux/amd64     | \
+        linux/arm/v6    | \
+        linux/arm/v7    | \
+        linux/arm64/v8  | \
+        linux/ppc64le   | \
+        linux/riscv64   | \
+        linux/s390x     ) \
+            apk add --no-cache \
+                busybox-extras \
+                # CLI Tools
+                bash \
+                vim \
+                nano \
+                git \
+                jq \
+                yq \
+                helm \
+                # HTTP
+                curl \
+                # Web Browser
+                lynx \
+                w3m \
+                links \
+                # Clients
+                openssh-client \
+                mysql-client \
+                s3cmd \
+                # Network and System Tools
+                bmon \
+                iftop \
+                iperf \
+                mtr \
+                nmap \
+                strace \
+                sysstat \
+                tcpdump \
+            ;; \
+    esac && \
+    case "${TARGETPLATFORM}" in \
+        linux/386       | \
+        linux/amd64     | \
+        linux/arm/v6    | \
+        linux/arm/v7    | \
+        linux/arm64/v8  | \
+        linux/ppc64le   | \
+        # linux/riscv64   | \
+        linux/s390x     ) \
+            apk add \
+                postgresql-client \
+            ;; \
+    esac && \
+    case "${TARGETPLATFORM}" in \
+        linux/386       | \
+        linux/amd64     | \
+        # linux/arm/v6    | \
+        linux/arm/v7    | \
+        linux/arm64/v8  | \
+        linux/ppc64le   | \
+        # linux/riscv64   | \
+        linux/s390x     ) \
+            apk add \
+                kubectl \
+            ;; \
+    esac && \
+    case "${TARGETPLATFORM}" in \
+        # linux/386       | \
+        linux/amd64     | \
+        # linux/arm/v6    | \
+        linux/arm/v7    | \
+        linux/arm64/v8  | \
+        linux/ppc64le   | \
+        # linux/riscv64   | \
+        linux/s390x     ) \
+            apk add \
+                k9s \
+            ;; \
+    esac
 
 CMD ["/bin/bash"]

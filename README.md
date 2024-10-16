@@ -36,7 +36,7 @@ Without buildx, the variable `TARGETARCH` must be (manually) specified:
 
     docker buildx build \
         -f Dockerfile-alpine \
-        --platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x \
+        --platform linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x \
         -t dersimn/netutils:alpine \
         --push \
         .
