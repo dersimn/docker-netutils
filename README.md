@@ -28,7 +28,7 @@ Without buildx, the variable `TARGETARCH` must be (manually) specified:
 
     docker buildx build \
         -f Dockerfile-ubuntu \
-        --platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x \
+        --platform linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x \
         -t dersimn/netutils \
         -t dersimn/netutils:ubuntu \
         --push \
