@@ -36,12 +36,12 @@ jobs:
           - flavor: alpine
             base-image: alpine:3
             dockerfile: ./Dockerfile-alpine
-            build-platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+            build-platforms: linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
           - flavor: ubuntu
             default-flavor: true
             base-image: ubuntu:22.04
             dockerfile: ./Dockerfile-ubuntu
-            build-platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/s390x
+            build-platforms: linux/amd64,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x
     steps:
       - name: Check if update for base image is available
         id: check
