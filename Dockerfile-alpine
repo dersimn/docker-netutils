@@ -24,6 +24,7 @@ RUN case "${TARGETPLATFORM}" in \
                 busybox-extras \
                 # CLI Tools
                 bash \
+                grep \
                 vim \
                 nano \
                 git \
