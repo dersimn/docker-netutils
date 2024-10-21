@@ -40,3 +40,12 @@ Without buildx, the variable `TARGETARCH` must be (manually) specified:
         -t dersimn/netutils:alpine \
         --push \
         .
+
+## GitHub
+
+Create two secrets:
+
+    gh secret set PERSONAL_ACCESS_TOKEN --body '<TOKEN>' --app dependabot
+    gh secret set DOCKERHUB_TOKEN --body '<TOKEN>'
+
+`PERSONAL_ACCESS_TOKEN` needs only scope `repo` (Classic Token)
