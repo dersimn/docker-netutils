@@ -24,6 +24,7 @@ RUN echo "Run for TARGETPLATFORM: ${TARGETPLATFORM}" && \
         linux/s390x     ) \
             apk add --no-cache \
                 busybox-extras \
+                coreutils \
                 # CLI Tools
                 bash \
                 grep \
