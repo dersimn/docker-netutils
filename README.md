@@ -9,6 +9,16 @@ Command:
     docker run     --rm --network=MYNETWORK dersimn/netutils ping 8.8.8.8
 
 
+# Test new packages
+
+    PLATFORMS="linux/386,linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/ppc64le,linux/riscv64,linux/s390x"
+    PACKAGE_NAME="foo"
+    
+    for i in ${PLATFORMS//,/ }; do echo "$i"; docker run --rm --platform "$i" alpine sh -c "apk add $PACKAGE_NAME"; done
+
+    for i in ${PLATFORMS//,/ }; do echo "$i"; docker run --rm --platform "$i" ubuntu bash -c "apt-get update && apt-get install -y $PACKAGE_NAME"; done
+
+
 # Build
 
 ## build
