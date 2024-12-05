@@ -11,6 +11,8 @@ RUN apt-get update && \
         git \
         jq \
         yq \
+        gh \
+        glab \
         # HTTP
         curl \
         wget \

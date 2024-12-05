@@ -34,6 +34,8 @@ RUN echo "Run for TARGETPLATFORM: ${TARGETPLATFORM}" && \
                 jq \
                 yq \
                 helm \
+                github-cli \
+                glab \
                 # HTTP
                 curl \
                 # Web Browser
