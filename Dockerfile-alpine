@@ -25,6 +25,7 @@ RUN echo "Run for TARGETPLATFORM: ${TARGETPLATFORM}" && \
             apk add --no-cache \
                 busybox-extras \
                 coreutils \
+                findutils \
                 # CLI Tools
                 bash \
                 grep \
