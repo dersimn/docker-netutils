@@ -1,7 +1,5 @@
 FROM alpine:3.21.2@sha256:56fa17d2a7e7f168a043a2712e63aed1f8543aeafdcee47c58dcffe38ed51099
 
-ARG TARGETPLATFORM
-
 # Already included in BusyBox
 #   wget
 #   telnet (part of busybox-extras)
@@ -11,94 +9,47 @@ ARG TARGETPLATFORM
 #   traceroute
 #   nslookup
 
-RUN echo "Run for TARGETPLATFORM: ${TARGETPLATFORM}" && \
-    case "${TARGETPLATFORM}" in \
-        linux/386       | \
-        linux/amd64     | \
-        linux/arm/v6    | \
-        linux/arm/v7    | \
-        linux/arm64     | \
-        linux/arm64/v8  | \
-        linux/ppc64le   | \
-        linux/riscv64   | \
-        linux/s390x     ) \
-            apk add --no-cache \
-                busybox-extras \
-                coreutils \
-                findutils \
-                # CLI Tools
-                bash \
-                grep \
-                vim \
-                nano \
-                git \
-                jq \
-                yq \
-                helm \
-                github-cli \
-                glab \
-                # HTTP
-                curl \
-                # Web Browser
-                lynx \
-                w3m \
-                links \
-                # Clients
-                openssh-client \
-                mysql-client \
-                s3cmd \
-                # Network and System Tools
-                bmon \
-                iftop \
-                iperf \
-                mtr \
-                nmap \
-                strace \
-                sysstat \
-                tcpdump \
-            ;; \
-    esac && \
-    case "${TARGETPLATFORM}" in \
-        linux/386       | \
-        linux/amd64     | \
-        linux/arm/v6    | \
-        linux/arm/v7    | \
-        linux/arm64     | \
-        linux/arm64/v8  | \
-        linux/ppc64le   | \
-        # linux/riscv64   | \
-        linux/s390x     ) \
-            apk add \
-                postgresql-client \
-            ;; \
-    esac && \
-    case "${TARGETPLATFORM}" in \
-        linux/386       | \
-        linux/amd64     | \
-        # linux/arm/v6    | \
-        linux/arm/v7    | \
-        linux/arm64     | \
-        linux/arm64/v8  | \
-        linux/ppc64le   | \
-        # linux/riscv64   | \
-        linux/s390x     ) \
-            apk add \
-                kubectl \
-            ;; \
-    esac && \
-    case "${TARGETPLATFORM}" in \
-        # linux/386       | \
-        linux/amd64     | \
-        # linux/arm/v6    | \
-        linux/arm/v7    | \
-        linux/arm64     | \
-        linux/arm64/v8  | \
-        linux/ppc64le   | \
-        # linux/riscv64   | \
-        linux/s390x     ) \
-            apk add \
-                k9s \
-            ;; \
-    esac
+RUN     apk update \
+    &&  for pkg in \
+            busybox-extras \
+            coreutils \
+            findutils \
+            # CLI Tools
+            bash \
+            grep \
+            vim \
+            nano \
+            git \
+            jq \
+            yq \
+            kubectl \
+            k9s \
+            helm \
+            github-cli \
+            glab \
+            # HTTP
+            curl \
+            # Web Browser
+            lynx \
+            w3m \
+            links \
+            # Clients
+            openssh-client \
+            mysql-client \
+            postgresql-client \
+            s3cmd \
+            # Network and System Tools
+            bmon \
+            iftop \
+            iperf \
+            mtr \
+            nmap \
+            strace \
+            sysstat \
+            tcpdump \
+        ; do \
+            apk add $pkg \
+        ; done \
+    &&  rm -vrf /var/cache/apk/*
 
 CMD ["/bin/bash"]
