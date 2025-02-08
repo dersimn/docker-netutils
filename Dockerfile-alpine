@@ -53,11 +53,13 @@ RUN     apk update \
             sysstat \
             tcpdump \
         ; do \
-            apk add $pkg \
+            # it's okay for this command to fail
+            apk add $pkg || true \
         ; done \
         # Try to install *-doc package for all currently installed packages
     &&  for pkg in $(apk list -I | awk '{print $1}' | sed 's/-[^-]*-[^-]*$//'); do \
-            apk add ${pkg}-doc \
+            # it's okay for this command to fail
+            apk add ${pkg}-doc || true \
         ; done \
     &&  rm -vrf /var/cache/apk/*
 
