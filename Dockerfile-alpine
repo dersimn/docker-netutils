@@ -14,6 +14,11 @@ RUN     apk update \
             busybox-extras \
             coreutils \
             findutils \
+            # man Pages
+            mandoc \
+            man-pages \
+            mandoc-apropos \
+            less \
             # CLI Tools
             bash \
             grep \
@@ -49,6 +54,10 @@ RUN     apk update \
             tcpdump \
         ; do \
             apk add $pkg \
+        ; done \
+        # Try to install *-doc package for all currently installed packages
+    &&  for pkg in $(apk list -I | awk '{print $1}' | sed 's/-[^-]*-[^-]*$//'); do \
+            apk add ${pkg}-doc \
         ; done \
     &&  rm -vrf /var/cache/apk/*
 
