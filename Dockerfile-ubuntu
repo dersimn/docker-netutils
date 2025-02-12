@@ -2,45 +2,49 @@ FROM ubuntu:24.04@sha256:72297848456d5d37d1262630108ab308d3e9ec7ed1c3286a32fe098
 
 ENV TZ=Europe/Berlin
 
-RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install \
-        # CLI Tools
-        vim \
-        nano \
-        git \
-        jq \
-        yq \
-        gh \
-        glab \
-        # HTTP
-        curl \
-        wget \
-        # Web Browser
-        lynx \
-        w3m \
-        links2 \
-        # Clients
-        openssh-client \
-        mysql-client \
-        postgresql-client \
-        s3cmd \
-        # Network and System Tools
-        bmon \
-        dnsutils \
-        iftop \
-        iperf \
-        iproute2 \
-        iputils-ping \
-        mtr-tiny \
-        net-tools \
-        netcat-openbsd \
-        ncat \
-        nmap \
-        strace \
-        sysstat \
-        tcpdump \
-        tcptraceroute \
-        traceroute \
-        telnet
+RUN     apt-get update \
+    &&  echo "y\ny" | unminimize \
+    &&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
+            # man Pages
+            man \
+            man-db \
+            # CLI Tools
+            vim \
+            nano \
+            git \
+            jq \
+            yq \
+            gh \
+            glab \
+            # HTTP
+            curl \
+            wget \
+            # Web Browser
+            lynx \
+            w3m \
+            links2 \
+            # Clients
+            openssh-client \
+            mysql-client \
+            postgresql-client \
+            s3cmd \
+            # Network and System Tools
+            bmon \
+            dnsutils \
+            iftop \
+            iperf \
+            iproute2 \
+            iputils-ping \
+            mtr-tiny \
+            net-tools \
+            netcat-openbsd \
+            ncat \
+            nmap \
+            strace \
+            sysstat \
+            tcpdump \
+            tcptraceroute \
+            traceroute \
+            telnet
 
 CMD ["/bin/bash"]
