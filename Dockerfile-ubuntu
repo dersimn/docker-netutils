@@ -16,6 +16,10 @@ RUN     apt-get update \
             yq \
             gh \
             glab \
+            # Helper
+            rsync \
+            rclone \
+            pv \
             # HTTP
             curl \
             wget \
@@ -28,6 +32,7 @@ RUN     apt-get update \
             mysql-client \
             postgresql-client \
             s3cmd \
+            restic \
             # Network and System Tools
             bmon \
             dnsutils \

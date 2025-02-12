@@ -32,6 +32,10 @@ RUN     apk update \
             helm \
             github-cli \
             glab \
+            # Helper
+            rsync \
+            rclone \
+            pv \
             # HTTP
             curl \
             # Web Browser
@@ -43,6 +47,7 @@ RUN     apk update \
             mysql-client \
             postgresql-client \
             s3cmd \
+            restic \
             # Network and System Tools
             bmon \
             iftop \
