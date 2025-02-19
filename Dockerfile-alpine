@@ -57,6 +57,7 @@ RUN     apk update \
             strace \
             sysstat \
             tcpdump \
+            bind-tools \
         ; do \
             # it's okay for this command to fail
             apk add $pkg || true \
