@@ -58,6 +58,7 @@ RUN     apk update \
             sysstat \
             tcpdump \
             bind-tools \
+            libcap \
         ; do \
             # it's okay for this command to fail
             apk add $pkg || true \
