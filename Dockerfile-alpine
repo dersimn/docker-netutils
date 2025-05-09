@@ -38,6 +38,7 @@ RUN     apk update \
             pv \
             # HTTP
             curl \
+            mitmproxy \
             # Web Browser
             lynx \
             w3m \

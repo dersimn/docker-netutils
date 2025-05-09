@@ -23,6 +23,7 @@ RUN     apt-get update \
             # HTTP
             curl \
             wget \
+            mitmproxy \
             # Web Browser
             lynx \
             w3m \
