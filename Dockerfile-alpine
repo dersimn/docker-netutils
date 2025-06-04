@@ -51,6 +51,7 @@ RUN     apk update \
             restic \
             # Network and System Tools
             bmon \
+            dnsmasq \
             iftop \
             iperf \
             mtr \
