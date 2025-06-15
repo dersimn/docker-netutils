@@ -54,6 +54,7 @@ RUN     apk update \
             dnsmasq \
             iftop \
             iperf \
+            iperf3 \
             mtr \
             nmap \
             strace \
