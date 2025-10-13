@@ -39,6 +39,9 @@ RUN     apk update \
             # HTTP
             curl \
             mitmproxy \
+            # Mail
+            mailutils \
+            ssmtp \
             # Web Browser
             lynx \
             w3m \

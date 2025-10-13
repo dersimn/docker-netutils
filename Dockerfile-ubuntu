@@ -24,6 +24,9 @@ RUN     apt-get update \
             curl \
             wget \
             mitmproxy \
+            # Mail
+            mailutils \
+            ssmtp \
             # Web Browser
             lynx \
             w3m \
