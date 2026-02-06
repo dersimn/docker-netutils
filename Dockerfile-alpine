@@ -52,6 +52,8 @@ RUN     apk update \
             postgresql-client \
             s3cmd \
             restic \
+            # Server
+            nginx \
             # Network and System Tools
             bmon \
             dnsmasq \
