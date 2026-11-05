@@ -49,6 +49,7 @@ RUN     apk update \
             # Clients
             openssh-client \
             mysql-client \
+            mariadb-connector-c \
             postgresql-client \
             s3cmd \
             restic \
