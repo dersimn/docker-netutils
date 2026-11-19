@@ -1,11 +1,14 @@
 FROM ubuntu:26.04@sha256:678c6550cc43645e08669028bc177f50be4e7c5b8cca677067b1914d4afc7a03
 
+ARG DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Berlin
 
 RUN     apt-get update \
     &&  apt-get -y install unminimize \
-    &&  echo "y\ny" | unminimize \
-    &&  DEBIAN_FRONTEND=noninteractive apt-get -y install \
+    &&  printf 'y\ny\n' | unminimize \
+    &&  apt-get -y install \
+            # Timezone data
+            tzdata \
             # man Pages
             man \
             man-db \
@@ -59,6 +62,7 @@ RUN     apt-get update \
             tcpdump \
             tcptraceroute \
             traceroute \
-            telnet
+            telnet \
+    &&  rm -rf /var/lib/apt/lists/*
 
 CMD ["/bin/bash"]
