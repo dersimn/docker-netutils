@@ -9,6 +9,8 @@ FROM alpine:3.24.4@sha256:f59abe656b692d901e184be3445e084786602108599d2a51d229c0
 #   traceroute
 #   nslookup
 
+ENV TZ=Europe/Berlin
+
 RUN     apk update \
     &&  for pkg in \
             busybox-extras \
@@ -19,6 +21,8 @@ RUN     apk update \
             man-pages \
             mandoc-apropos \
             less \
+            # docs pulls in the -doc package of every installed package
+            docs \
             # CLI Tools
             bash \
             grep \
@@ -72,11 +76,6 @@ RUN     apk update \
         ; do \
             # it's okay for this command to fail
             apk add $pkg || true \
-        ; done \
-        # Try to install *-doc package for all currently installed packages
-    &&  for pkg in $(apk list -I | awk '{print $1}' | sed 's/-[^-]*-[^-]*$//'); do \
-            # it's okay for this command to fail
-            apk add ${pkg}-doc || true \
         ; done \
     &&  rm -vrf /var/cache/apk/*
 
