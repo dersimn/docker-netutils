@@ -1,0 +1,65 @@
+FROM debian:13
+
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Berlin
+
+RUN     apt-get update \
+    &&  apt-get -y install \
+            # Timezone data
+            tzdata \
+            # man Pages
+            man \
+            man-db \
+            # CLI Tools
+            vim \
+            nano \
+            git \
+            jq \
+            yq \
+            gh \
+            glab \
+            # Helper
+            rsync \
+            rclone \
+            pv \
+            # HTTP
+            curl \
+            wget \
+            # Mail
+            mailutils \
+            ssmtp \
+            # Web Browser
+            lynx \
+            w3m \
+            links2 \
+            # Clients
+            openssh-client \
+            mariadb-client \
+            postgresql-client \
+            s3cmd \
+            restic \
+            # Server
+            nginx \
+            # Network and System Tools
+            bmon \
+            dnsmasq \
+            dnsutils \
+            iftop \
+            iperf \
+            iperf3 \
+            iproute2 \
+            iputils-ping \
+            mtr-tiny \
+            net-tools \
+            netcat-openbsd \
+            ncat \
+            nmap \
+            strace \
+            sysstat \
+            tcpdump \
+            tcptraceroute \
+            traceroute \
+            telnet \
+    &&  rm -rf /var/lib/apt/lists/*
+
+CMD ["/bin/bash"]
